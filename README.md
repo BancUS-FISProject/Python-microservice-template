@@ -1,13 +1,16 @@
 # Estructura del proyecto
 
 ```bash
+
+Plantilla hecha para los datos de ejemplo "financial analytics"
+
 service_name/
 ├── .github/                      # CI/CD (Integración Continua)
 │   └── workflows/
 │       └── ci.yml                # GitHub Action: instala, corre tests, chequea formato
 │
 ├── .dockerignore                 # Archivos a ignorar en la build de Docker
-├── .env.example                  # Plantilla de variables de entorno (para copiar a .env)
+├── .env                          # Plantilla de variables de entorno (para copiar a .env)
 ├── .gitignore
 │
 ├── Dockerfile                    # Construcción de la imagen del servicio
@@ -22,7 +25,7 @@ service_name/
         │   ├── __init__.py
         │   ├── v1/               # Versionado /v1/
         │   │   ├── __init__.py
-        │   │   └── accounts_blueprint.py  # Endpoints
+        │   │   └── accounts_blueprint.py  # Blueprint que contiene los endpoints de un recurso
         │   ├── auth.py           # Autenticaciones
         │
         ├── core/                 # 2. Configuración
@@ -34,15 +37,15 @@ service_name/
         ├── db/                   # 3. Base de datos
         │   ├── __init__.py
         │   ├── database.py       # Conexión a MongoDB (Motor)
-        │   └── account_repository.py # Operaciones DB
+        │   └── account_repository.py # Operaciones DB para una coleccion (tabla) 
         │
         ├── models/               # 4. Modelos Pydantic
         │   ├── __init__.py
-        │   ├── account.py        # AccountCreate, AccountView…
+        │   ├── account.py        # Modelos de datos (clases). Realizan validacion del tipo de dato (string, int,...)
         │
         ├── services/             # 5. Lógica de negocio
         │   ├── __init__.py
-        │   └── account_service.py # crear, debitar, actualizar, etc.
+        │   └── account_service.py # crear, debitar, actualizar, etc. Validacion avanzada
         │
         ├── comms/               # 6. Comunicación
         │   ├── __init__.py
