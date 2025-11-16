@@ -1,5 +1,5 @@
 from quart import Quart
-from quart_schema import QuartSchema
+from quart_schema import QuartSchema, Tag
 
 from .core.config import settings
 from .core import extensions as ext
@@ -42,7 +42,7 @@ logger.propagate = False
 
 def create_app():
     
-    app = Quart(__name__)
+    app = Quart("Python Template")
     
     # Load settings
     app.config.from_object(settings)
@@ -52,7 +52,15 @@ def create_app():
     app.register_blueprint(accounts_bp_v1)
     logger.info("Routes registered")
     
-    QuartSchema(app)  # TODO aveririguar como generarlo
+    # Open API Specification
+    schema = QuartSchema()
+    schema.tags = [
+        Tag(name="v1", description="API version 1"),
+    ]
+    schema.openapi_path = "/api/openapi.json"
+    schema.swagger_ui_path = "/api/docs"
+    schema.init_app(app)
+    # Open API Specification
     
     # Set up everything before serving the service
     @app.before_serving

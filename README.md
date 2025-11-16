@@ -4,6 +4,8 @@
 
 Plantilla hecha para los datos de ejemplo "financial analytics"
 
+OpenAPI specification en "/api/docs"
+
 service_name/
 ├── .github/                      # CI/CD (Integración Continua)
 │   └── workflows/
